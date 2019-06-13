@@ -1,0 +1,28 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/node:12.4.0
+
+    environment:
+      CC_TEST_REPORTER_ID: ad21bcb526e92efae65e0a7034d3297a0b4460398e0110402bb63822f760e454
+    steps:
+      - checkout
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+      - run:
+          name: Setup Dependencies
+          command: npm install
+      - run:
+          name: Setup Code Climate test-reporter
+          command: |
+            # download test reporter as a static binary
+            curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+            chmod +x ./cc-test-reporter
+      - run:
+          name: test coverage
+          command: |
+            ./cc-test-reporter before-build
+            npm test -- -u
+            ./cc-test-reporter after-build --exit-code $?
+
