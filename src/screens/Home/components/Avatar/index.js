@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Image, StyleSheet } from 'react-native';
-
+import PropTypes from 'prop-types';
 
 const styles = StyleSheet.create({
   imageContainer: {
@@ -22,3 +22,11 @@ const Avatar = ({ source }) => (
 );
 
 export default Avatar;
+
+Avatar.propTypes = {
+  source: PropTypes.string,
+};
+
+Avatar.defaultProps = {
+  source: '',
+};

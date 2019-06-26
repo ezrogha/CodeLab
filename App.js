@@ -9,7 +9,6 @@ import { ApolloProvider } from 'react-apollo';
 import { EMAIL, PASSWORD } from 'react-native-dotenv';
 
 import AppNavigator from './navigation/AppNavigator';
-
 import login from './src/githubLogin';
 
 const httpLink = createHttpLink({

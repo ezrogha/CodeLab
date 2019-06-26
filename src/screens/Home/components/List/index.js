@@ -4,6 +4,7 @@ import {
 } from 'react-native';
 import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
+import PropTypes from 'prop-types';
 
 import ListItem from '../ListItem';
 
@@ -13,7 +14,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const GET_DEVS = gql`
+export const GET_DEVS = gql`
   query {
     search(query: "location:lagos language:javascript", type: USER, first: 20) {
       repositoryCount
@@ -66,3 +67,11 @@ const List = ({ navigate }) => (
 );
 
 export default List;
+
+List.propTypes = {
+  navigate: PropTypes.func,
+};
+
+List.defaultProps = {
+  navigate: () => {},
+};

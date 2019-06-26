@@ -4,6 +4,7 @@ import {
 } from 'react-native';
 import { Constants } from 'expo';
 import { Header, Icon, SearchBar } from 'react-native-elements';
+import PropTypes from 'prop-types';
 
 import List from './components/List';
 
@@ -24,12 +25,7 @@ export class Home extends Component {
   state = {
     searchText: '',
     showSearchBar: false,
-    items: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
   };
-
-  componentDidMount() {
-
-  }
 
   updateSearchText = (event) => {
     this.setState({
@@ -38,7 +34,7 @@ export class Home extends Component {
   };
 
   render() {
-    const { showSearchBar, searchText, items } = this.state;
+    const { showSearchBar, searchText } = this.state;
     const { navigation: { navigate } } = this.props;
     return (
       <View style={styles.homeContainer}>
@@ -95,7 +91,7 @@ export class Home extends Component {
           />
         )}
         <SafeAreaView style={{ flex: 1 }}>
-          <List items={items} navigate={navigate} />
+          <List navigate={navigate} />
         </SafeAreaView>
       </View>
     );
@@ -103,3 +99,9 @@ export class Home extends Component {
 }
 
 export default Home;
+
+Home.propTypes = {
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func,
+  }).isRequired,
+};
