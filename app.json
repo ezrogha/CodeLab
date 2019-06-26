@@ -4,6 +4,11 @@
     "slug": "CodeLab",
     "privacy": "public",
     "sdkVersion": "33.0.0",
+    "android": {
+      "package": "com.amazon.CodeLab.myapp.v1",
+      "versionCode": 1,
+      "permissions": []
+    },
     "platforms": [
       "ios",
       "android",
